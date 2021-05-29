@@ -1,0 +1,35 @@
+.container {
+  background-color: rgb(233, 115, 18);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form {
+  width: 40%;
+  background-color: white;
+  border-radius: 4pt;
+  height: fit-content;
+  text-align: center;
+  padding: 6pt 12pt;
+}
+.text_title {
+  font-size: 20pt;
+  font-weight: bolder;
+  letter-spacing: 0.8;
+}
+.a-routing {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-size: 12pt;
+  .text_routing {
+    color: rgb(5, 46, 133);
+    cursor: pointer;
+  }
+}
+.btn {
+  background-color: rgb(233, 115, 18) !important;
+  border: none !important;
+}
