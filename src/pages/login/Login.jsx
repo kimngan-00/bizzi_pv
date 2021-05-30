@@ -1,16 +1,39 @@
 import React from "react";
 import "./login.scss";
 import "antd/dist/antd.css";
-import { Form, Input, Button, Checkbox } from "antd";
+import { useHistory } from "react-router-dom";
+
+import { Form, Input, Button, message } from "antd";
 import axios from "axios";
 
-function login() {
+function Login() {
+  const URL = "http://18.220.223.236:5000/";
+  const URL_LOCAL = "http://localhost:5000/";
+  const history = useHistory();
+
   const onFinish = async (values) => {
     try {
-      console.log(values);
-
-      const data = await axios.post("http://localhost:5000/user/login", values);
-      console.log("data: ", data);
+      const data = await axios.post(URL_LOCAL + "user/login", values);
+      const resData = data.data;
+      switch (data.status) {
+        case 200:
+          message.success("Login successfully");
+          localStorage.setItem("accessToken", resData.accessToken);
+          localStorage.setItem("role", resData.role);
+       
+          if (resData.role == "admin") {
+            history.push("/admin");
+          } else {
+            history.push("/home");
+          }
+          break;
+        case 201:
+          message.error("Account does not exist");
+          break;
+        case 202:
+          message.error("Wrong password");
+          break;
+      }
     } catch (error) {
       console.log(error);
     }
@@ -68,4 +91,4 @@ function login() {
   );
 }
 
-export default login;
+export default Login;

@@ -1,12 +1,31 @@
 import React from "react";
 import "../login/login.scss";
 import "antd/dist/antd.css";
-import { Form, Input, Select, Button } from "antd";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
+import { Form, Input, Select, Button, message } from "antd";
 const { Option } = Select;
 
 function Register() {
-  const onFinish = (values) => {
-    console.log("Success:", values);
+  const URL = "http://18.220.223.236:5000/";
+  const URL_LOCAL = "http://localhost:5000/";
+  const history = useHistory();
+
+  const onFinish = async (values) => {
+    try {
+      const data = await axios.post(URL_LOCAL + "user/register", values);
+      switch (data.status) {
+        case 200:
+          message.success("Register successfully");
+          history.push("/login");
+          break;
+        case 201:
+          message.error("Account exist");
+          break;
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -60,7 +79,7 @@ function Register() {
               },
               ({ getFieldValue }) => ({
                 validator(_, value) {
-                  if (!value || getFieldValue("password") === value) {
+                  if (!value || getFieldValue("pass") === value) {
                     return Promise.resolve();
                   }
 

@@ -1,0 +1,33 @@
+.container-admin {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgba(233, 115, 18, 0.671);
+    padding: 20pt 20vw;
+    .table {
+      width: 100%;
+    }
+  }
+  
+  .title {
+    font-size: 25pt;
+    font-weight: bolder;
+    color: white;
+  }
+  
+  .container-handle {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-bottom: 10pt;
+  
+    Button {
+      margin-left: 10pt;
+    }
+  }
+  
