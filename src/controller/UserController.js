@@ -66,22 +66,14 @@ const login = async (req, res, next) => {
     });
     return res.status(200).send({ accessToken: token, role: userFound.role });
   } catch (error) {
-    // next(error);
-    return res.send(error.message);
+    next(error);
   }
 };
 
-// const handleErr = (status, msg) => {
-//   const err = new Error();
-//   err.status = status || 500;
-//   err.message = msg;
-
-//   console.log(err)
-//   // throw err;
-// };
 
 module.exports = {
   createUser,
   register,
   login,
+  
 };

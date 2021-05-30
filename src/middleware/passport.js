@@ -27,23 +27,6 @@ passport.use(
   })
 );
 
-// passport.use(
-//   "admin",
-//   new JwtStrategy(opts, async (req, jwt_payload, done) => {
-//     try {
-//       const user = await User.findById(jwt_payload);
-
-//       if (user.role == "admin") {
-//         return done(null, user);
-//       }
-
-//       return done("Ban khong phai admin", false);
-//     } catch (error) {
-//       return done(error.message, false);
-//     }
-//   })
-// );
-
 passport.serializeUser(function (payload, done) {
   done(null, payload);
 });

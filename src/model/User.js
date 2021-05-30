@@ -21,13 +21,8 @@ const UserSchema = new Schema(
     displayName: {
       type: String,
     },
-    imgUser: {
-      type: String,
-    },
-
-    birthday: {
-      type: Date,
-    },
+   
+  
     gender: {
       type: String,
       enum: ["male", "female", "other"],

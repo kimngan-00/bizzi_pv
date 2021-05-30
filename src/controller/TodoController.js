@@ -1,18 +1,17 @@
-const Todo = require("../model/Todolist");
+const Todolist = require("../model/Todolist");
 
 const createTodo = async (req, res, next) => {
   try {
     const user = req.user;
 
-    const newTodo = new Todo({
+    const newTodo = new Todolist({
       ...req.body,
       user,
     });
-
-    await newTodo.save();
-    return res.status(200).send(newTodo);
+    newTodo.save();
+    const todoList = await Todolist.find({ user: user._id });
+    return res.status(200).send(todoList);
   } catch (error) {
-    // return res.send(error.message);
     next(error);
   }
 };
@@ -21,10 +20,10 @@ const deleteTodo = async (req, res, next) => {
   try {
     const { idTodo } = req.params;
     const user = req.user;
-    const todoFound = await Todo.findById(idTodo);
+    const todoFound = await Todolist.findById(idTodo);
     if (todoFound) {
-      await Todo.findByIdAndDelete(idTodo);
-      const todoList = await Todo.find({ user: user._id });
+      await Todolist.findByIdAndDelete(idTodo);
+      const todoList = await Todolist.find({ user: user._id });
       return res.status(200).send(todoList);
     }
 
@@ -34,18 +33,32 @@ const deleteTodo = async (req, res, next) => {
   }
 };
 
-const updateTodo = async(req,res,next)=>{
+const updateTodo = async (req, res, next) => {
   try {
-    console.log("object");
+    const idTodo = req.body.id;
+    const user = req.user;
+    const todoFound = await Todolist.findById(idTodo);
+
+    if (todoFound) {
+      const newTodo = {
+        ...req.body,
+      };
+
+      await Todolist.findByIdAndUpdate(idTodo, newTodo);
+      const todoList = await Todolist.find({ user: user._id });
+      return res.status(200).send(todoList);
+    }
+
+    return res.status(201).send("Todo khong ton tai");
   } catch (error) {
-    next(error)
+    next(error);
   }
-}
+};
 
 const getAll = async (req, res, next) => {
   try {
     const user = req.user;
-    const todoList = await Todo.find({ user: user._id });
+    const todoList = await Todolist.find({ user: user._id });
     if (todoList) {
       return res.status(200).send(todoList);
     }
@@ -59,5 +72,5 @@ module.exports = {
   createTodo,
   deleteTodo,
   getAll,
-  updateTodo
+  updateTodo,
 };

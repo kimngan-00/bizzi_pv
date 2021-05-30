@@ -1,14 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const adminController = require("../controller/AdminController");
 
-router.get("/", (req, res, next) => {
-  try {
-    return res.send("pass admin autho");
-  } catch (error) {
-    res.send(error.message);
+router.get("/", adminController.getAllUser);
 
-    // next(error);
-  }
-});
+router.delete("/:idUser", adminController.deleteUser);
 
 module.exports = router;

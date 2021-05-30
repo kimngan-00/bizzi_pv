@@ -34,11 +34,11 @@ mongoose.connect(mongoString, optionMongoose);
 //Router
 app.use("/user", userRoute);
 app.use("/todo", passport.authenticate("jwt", { session: false }), todoRoute);
-// app.use(
-//   "/admin",
-//   passport.authenticate("admin", { session: false }),
-//   adminRoute
-// );
+app.use(
+  "/admin",
+  passport.authenticate("jwt", { session: false }),
+  adminRoute
+);
 
 //Handle error
 app.use((req, res, next) => {
