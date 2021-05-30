@@ -30,7 +30,7 @@ const UserSchema = new Schema(
     },
     gender: {
       type: String,
-      enum: ["male", "female", "another"],
+      enum: ["male", "female", "other"],
       default: "male",
     },
     todoList: [

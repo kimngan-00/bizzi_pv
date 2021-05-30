@@ -64,8 +64,7 @@ const login = async (req, res, next) => {
     const token = jwt.sign({ data: userFound._id }, TOKEN_SECRET, {
       expiresIn: "1d",
     });
-    console.log("token: ", token);
-    return res.status(200).send("Bearer " + token);
+    return res.status(200).send({ accessToken: token, role: userFound.role });
   } catch (error) {
     // next(error);
     return res.send(error.message);

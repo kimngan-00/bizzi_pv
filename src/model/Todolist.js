@@ -10,9 +10,7 @@ const TodoSchema = new Schema(
     jd: {
       type: String,
     },
-    date: {
-      type: Date,
-    },
+    
     note: {
       type: String,
     },
