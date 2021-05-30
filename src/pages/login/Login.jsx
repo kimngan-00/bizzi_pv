@@ -13,7 +13,7 @@ function Login() {
 
   const onFinish = async (values) => {
     try {
-      const data = await axios.post(URL_LOCAL + "user/login", values);
+      const data = await axios.post(URL + "user/login", values);
       const resData = data.data;
       switch (data.status) {
         case 200:

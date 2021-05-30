@@ -48,7 +48,7 @@ function AdminPage() {
 
   //Get data todoList
   useEffect(async () => {
-    var data = await axios.get(URL_LOCAL + "admin", {
+    var data = await axios.get(URL + "admin", {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -59,7 +59,7 @@ function AdminPage() {
   //func delete 1 Todo
   const deleteItem = async (index) => {
     try {
-      const data = await axios.delete(URL_LOCAL + "admin/" + index, {
+      const data = await axios.delete(URL + "admin/" + index, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },

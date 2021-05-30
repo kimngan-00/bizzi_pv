@@ -50,7 +50,7 @@ function HomePage() {
 
   //Get data todoList
   useEffect(async () => {
-    var data = await axios.get(URL_LOCAL + "todo", {
+    var data = await axios.get(URL + "todo", {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -66,7 +66,7 @@ function HomePage() {
       if (isUpdate) {
         values.id = valueUpdate._id;
         console.log("value update: ", values);
-        data = await axios.patch(URL_LOCAL + "todo", values, {
+        data = await axios.patch(URL + "todo", values, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
@@ -75,7 +75,7 @@ function HomePage() {
         console.log("data updated: ", data);
         setTodoList(data.data);
       } else {
-        data = await axios.post(URL_LOCAL + "todo", values, {
+        data = await axios.post(URL + "todo", values, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
@@ -100,7 +100,7 @@ function HomePage() {
   const deleteItem = async (index) => {
     console.log("index delete: ", index);
     try {
-      const data = await axios.delete(URL_LOCAL + "todo/" + index, {
+      const data = await axios.delete(URL + "todo/" + index, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },

@@ -13,7 +13,7 @@ function Register() {
 
   const onFinish = async (values) => {
     try {
-      const data = await axios.post(URL_LOCAL + "user/register", values);
+      const data = await axios.post(URL + "user/register", values);
       switch (data.status) {
         case 200:
           message.success("Register successfully");
