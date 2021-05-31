@@ -6,9 +6,9 @@ const createTodo = async (req, res, next) => {
 
     const newTodo = new Todolist({
       ...req.body,
-      user,
+      user: user._id,
     });
-    newTodo.save();
+    await newTodo.save();
     const todoList = await Todolist.find({ user: user._id });
     return res.status(200).send(todoList);
   } catch (error) {
