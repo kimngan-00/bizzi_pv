@@ -72,18 +72,16 @@ function HomePage() {
           },
         });
         setIsUpdate(false);
-        console.log("data updated: ", data);
-        setTodoList(data.data);
       } else {
-        data = await axios.post(URL + "todo", values, {
+        data = await axios.post(URL_LOCAL + "todo", values, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
         });
-        setTodoList(data.data);
       }
+      setTodoList(data.data);
 
-      setValueUpdate({});
+      setValueUpdate("");
       setIsModalVisible(false);
     } catch (error) {
       console.log(error);
@@ -98,7 +96,6 @@ function HomePage() {
 
   //func delete 1 Todo
   const deleteItem = async (index) => {
-    console.log("index delete: ", index);
     try {
       const data = await axios.delete(URL + "todo/" + index, {
         headers: {
