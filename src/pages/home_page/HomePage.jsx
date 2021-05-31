@@ -73,7 +73,7 @@ function HomePage() {
         });
         setIsUpdate(false);
       } else {
-        data = await axios.post(URL_LOCAL + "todo", values, {
+        data = await axios.post(URL + "todo", values, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
